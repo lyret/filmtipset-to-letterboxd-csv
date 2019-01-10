@@ -1,0 +1,33 @@
+{
+	"name": "filmtipset-to-letterboxd-csv",
+	"version": "0.1.0",
+	"description": "",
+	"author": "Viktor Lyresten <viktor@lyresten.se>",
+	"license": "UNLICENSED",
+	"repository": {
+		"type": "git",
+		"url": "http://git.hiveandfive.com/lyret/filmtipset-to-letterbox-csv.git"
+	},
+	"main": "index.js",
+	"scripts": {
+		"compile": "tsc -p tsconfig.json; cp settings.json .dist/settings.json",
+		"start": "node .dist/index.js",
+		"dev-start": "npm run compile; npm start"
+	},
+	"devDependencies": {
+		"@types/fs-promise": "^1.0.3",
+		"@types/lodash": "^4.14.118",
+		"@types/moment": "^2.13.0",
+		"@types/node": "^6.0.96",
+		"@types/xlsx": "0.0.36"
+	},
+	"dependencies": {
+		"excel4node": "^1.7.0",
+		"fs-promise": "^2.0.3",
+		"lodash": "^4.17.11",
+		"moment": "^2.22.2",
+		"web-request": "^1.0.7",
+		"xlsx": "^0.14.1",
+		"xlsx-parse-json": "^2.0.2"
+	}
+}

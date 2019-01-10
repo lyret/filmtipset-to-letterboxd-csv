@@ -1,0 +1,39 @@
+{
+    /* Paths excluded from the sidebar and from searches */
+    "files.exclude": {
+
+        // Files found anywhere
+        "**/.git": true,
+        "**/node_modules/": true,
+        "**/npm-debug.log": true,
+        "**/.DS_Store": true,
+
+		// Built files
+		".dist" : true,
+
+        // Workspace files
+        ".vscode": true,
+        ".gitmodules": true,
+        "ecosystem.json": true,
+        "tsconfig.json": true,
+        "package.json": false,
+        "package-lock.json": true,
+    },
+    /* Paths excluded (or included) from the searches */
+    "search.exclude": {
+        
+        // Files found anywhere
+        "**/.git": true,
+        "**/node_modules/": true,
+        "**/npm-debug.log": false,
+        "**/.vscode": false,
+
+        // Project files
+        ".vscode": false,
+        "package-lock.json": false,
+        "tsconfig.json": false
+    },
+    /* Typescript sdk path & code lens */
+    "typescript.tsdk": "./kosmic/node_modules/typescript/lib",
+    "typescript.implementationsCodeLens.enabled": true
+}
