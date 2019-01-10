@@ -1,3 +1,5 @@
 .cache
 .dist
 node_modules
+all-movie-reviews.csv
+settings.json
