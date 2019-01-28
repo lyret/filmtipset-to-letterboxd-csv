@@ -1,5 +1,4 @@
 import { request } from "./send-request";
-import { SSL_OP_EPHEMERAL_RSA } from "constants";
 
 /* Returns a list of all watched movies, optionally filtered by a grade */
 export async function history(filterByGrade?: "1" | "2" | "3" | "4" | "5") {

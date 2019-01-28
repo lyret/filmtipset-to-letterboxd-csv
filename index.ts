@@ -99,7 +99,7 @@ async function createAWatchlistCSV() {
 	}
 
 	// Export the results
-	const worksheet = utils.csv_to_sheet(jsonResults);
+	const worksheet = utils.json_to_sheet(jsonResults);
 	const csvData = utils.sheet_to_csv(worksheet);
 
 	await writeFile('watchlist.csv', csvData, { encoding: 'utf8' });
