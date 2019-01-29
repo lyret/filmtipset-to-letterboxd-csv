@@ -1,7 +1,7 @@
 import { find } from 'lodash';
 import { validateSettings, isFavorite, movie, comments, latest, watchlist } from './api';
 import { utils } from 'xlsx';
-import { writeFile } from 'fs-promise';
+import { writeFile, exists, mkdir } from 'fs-promise';
 import * as Moment from 'moment';
 
 async function convertMovieReviewToLetterboxdCsvRow(movie: Movie | MovieSummary | undefined, review: MovieReviewRow, comments: MovieCommentRow[]): Promise<LetterboxdImportRow> {
@@ -75,7 +75,10 @@ async function createAHistoryCSV() {
 	const worksheet = utils.json_to_sheet(jsonResults);
 	const csvData = utils.sheet_to_csv(worksheet);
 
-	await writeFile('all-movie-reviews.csv', csvData, { encoding: 'utf8' });
+	if (!(await exists('.output'))) {
+		await mkdir('.output');
+	}
+	await writeFile('.output/all-movie-reviews.csv', csvData, { encoding: 'utf8' });
 }
 
 async function createAWatchlistCSV() {
@@ -102,13 +105,21 @@ async function createAWatchlistCSV() {
 	const worksheet = utils.json_to_sheet(jsonResults);
 	const csvData = utils.sheet_to_csv(worksheet);
 
-	await writeFile('watchlist.csv', csvData, { encoding: 'utf8' });
+	if (!(await exists('.output'))) {
+		await mkdir('.output');
+	}
+	await writeFile('.output/watchlist.csv', csvData, { encoding: 'utf8' });
 }
 
 async function main() {
-	validateSettings();
-	createAWatchlistCSV();
-	createAHistoryCSV();
+	try {
+		await validateSettings();
+		createAWatchlistCSV();
+		createAHistoryCSV();
+	}
+	catch (err) {
+		console.error("The conversion failed with the following error:", err);
+	}
 }
 
 main();
